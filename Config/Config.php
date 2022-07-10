@@ -1,5 +1,5 @@
 <?php 
-	const BASE_URL = "http://localhost/tienda_virtual";
+	const BASE_URL = "http://tiendavirtual.local";
 	//const BASE_URL = "https://abelosh.com/tiendavirtual";
 
 	//Zona horaria
@@ -37,7 +37,7 @@
 	const NOMBRE_REMITENTE = "Tienda Virtual";
 	const EMAIL_REMITENTE = "no-reply@abelosh.com";
 	const NOMBRE_EMPESA = "Tienda Virtual";
-	const WEB_EMPRESA = "www.abelosh.com";
+	const WEB_EMPRESA = "www.sebazuniga.cl";
 
 	const DESCRIPCION = "La mejor tienda en línea con artículos de moda.";
 	const SHAREDHASH = "TiendaVirtual";
