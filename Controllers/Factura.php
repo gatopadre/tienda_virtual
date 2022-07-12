@@ -32,7 +32,7 @@
 						$html = getFile("Template/Modals/comprobantePDF",$data);
 						$html2pdf = new Html2Pdf('p','A4','es','true','UTF-8');
 						$html2pdf->writeHTML($html);
-						$html2pdf->output('factura-'.$idpedido.'.pdf');
+						$html2pdf->output('orden_de_compra_'.$idpedido.'.pdf');
 					}
 				}else{
 					echo "Dato no válido";

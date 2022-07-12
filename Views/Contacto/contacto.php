@@ -9,7 +9,7 @@ $idpagina = $data['page']['idpost'];
  </script>
 <!-- Title page -->
 <section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url(<?= $banner ?>);">
-	<h2 class="ltext-105 cl0 txt-center">
+	<h2 class="ltext-105 txt-center">
 		Contacto
 	</h2>
 </section>
@@ -18,7 +18,7 @@ $idpagina = $data['page']['idpost'];
 	if(viewPage($idpagina)){	
  ?>
 <!-- Content page -->
-<section class="bg0 p-t-104 p-b-116">
+<section class="bg0 p-b-116">
 	<div class="container">
 		<div class="flex-w flex-tr">
 			<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
