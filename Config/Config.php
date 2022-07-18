@@ -60,7 +60,7 @@
 	const METHODENCRIPT = "AES-128-ECB";
 
 	//Envío
-	const COSTOENVIO = 5;
+	const COSTOENVIO = 0; #antes era 5
 
 	//Módulos
 	const MDASHBOARD = 1;
@@ -102,4 +102,6 @@
 	const INSTAGRAM = "https://www.instagram.com/febel24/";
 	
 
+	// CANTIDAD STOCK MINIMO
+	const STOCK_MINIMO = 99;
  ?>

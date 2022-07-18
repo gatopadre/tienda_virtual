@@ -190,8 +190,14 @@ class Pedidos extends Controllers{
 						if($transaccion == "" or $idtipopago =="" or $estado == ""){
 							$arrResponse = array("status" => false, "msg" => 'Datos incorrectos.');
 						}else{
+							# si el estatus es "Entregado" se tiene que bajar el stock del pedido
+							$requestUpdateStock = true;
+							if ($estado == STATUS[5]) {
+								$requestUpdateStock = $this->model->updateStockProductos($idpedido);
+							}
 							$requestPedido = $this->model->updatePedido($idpedido,$transaccion,$idtipopago,$estado);
-							if($requestPedido){
+							# requestUpdateStock --> solo seria falso si falla la actualizacion del stock cuando sea un pedido entregado
+							if($requestPedido && $requestUpdateStock){
 								$arrResponse = array("status" => true, "msg" => "Datos actualizados correctamente");
 							}else{
 								$arrResponse = array("status" => false, "msg" => "No es posible actualizar la información.");
@@ -205,4 +211,4 @@ class Pedidos extends Controllers{
 		die();
 	}
 }
- ?>
+?>
