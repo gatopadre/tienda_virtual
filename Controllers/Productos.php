@@ -18,7 +18,7 @@ class Productos extends Controllers
 			header("Location:" . base_url() . '/dashboard');
 		}
 		$data['page_tag'] = "Productos";
-		$data['page_title'] = "PRODUCTOS <small>Tienda Virtual</small>";
+		$data['page_title'] = "PRODUCTOS / <small>Tienda Virtual</small>";
 		$data['page_name'] = "productos";
 		$data['page_functions_js'] = "functions_productos.js";
 		$this->views->getView($this, "productos", $data);
@@ -34,7 +34,7 @@ class Productos extends Controllers
 				$btnDelete = '';
 
 				if ($arrData[$i]['stock'] <= STOCK_MINIMO) {
-					$arrData[$i]['stock'] = '<span class="badge badge-danger">'.$arrData[$i]['stock'].'</span>';
+					$arrData[$i]['stock'] = '<span class="badge badge-pill badge-danger cantidad-stock-minimo">'.$arrData[$i]['stock'].'</span>';
 				} else {
 					$arrData[$i]['stock'] = '<span class="">'.$arrData[$i]['stock'].'</span>';
 				}

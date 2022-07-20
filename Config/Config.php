@@ -103,5 +103,5 @@
 	
 
 	// CANTIDAD STOCK MINIMO
-	const STOCK_MINIMO = 99;
+	const STOCK_MINIMO = 97;
  ?>

@@ -36,6 +36,9 @@
                       <tbody>
                       </tbody>
                     </table>
+                    <p class="text-right">
+                      <span class="badge badge-pill badge-danger cantidad-stock-minimo">XX</span> La cantidad disponible es menor que el stock mínimo del producto.
+                    </p>
                   </div>
                 </div>
               </div>
