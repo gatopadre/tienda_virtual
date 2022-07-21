@@ -16470,10 +16470,28 @@ be a descendant of the grid when it is being dragged.
           transform: rotateY(0deg);
 }
 
+.register-form {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 40px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -webkit-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+.register-box {
+  min-height: 520px!important;
+}
+
 @media (max-width: 351px) {
   .login-content .login-box {
     min-width: 100%;
   }
+
   .login-content .login-box .login-form, .login-content .login-box .forget-form {
     width: 100%;
   }
@@ -16733,4 +16751,8 @@ be a descendant of the grid when it is being dragged.
 
 .user .user-settings label {
   color: #666;
+}
+
+.left-label {
+	min-width: 40%;
 }

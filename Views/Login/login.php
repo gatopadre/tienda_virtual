@@ -46,6 +46,10 @@
           <div class="form-group btn-container">
             <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-sign-in-alt"></i> INICIAR SESIÓN</button>
           </div>
+          <div class="utility">
+          <p class="semibold-text mb-2"><a href="/tienda_virtual/registro" >¿No tienes cuenta? Registrate</a></p>
+            </div>
+         
         </form>
         <form id="formRecetPass" name="formRecetPass" class="forget-form" action="">
           <h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>¿Olvidaste contraseña?</h3>

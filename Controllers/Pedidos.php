@@ -20,7 +20,7 @@ class Pedidos extends Controllers{
 			header("Location:".base_url().'/dashboard');
 		}
 		$data['page_tag'] = "Pedidos";
-		$data['page_title'] = "PEDIDOS <small>Tienda Virtual</small>";
+		$data['page_title'] = "PEDIDOS";
 		$data['page_name'] = "pedidos";
 		$data['page_functions_js'] = "functions_pedidos.js";
 		$this->views->getView($this,"pedidos",$data);
@@ -82,7 +82,7 @@ class Pedidos extends Controllers{
 		}
 		
 		$data['page_tag'] = "Pedido - Tienda Virtual";
-		$data['page_title'] = "PEDIDO <small>Tienda Virtual</small>";
+		$data['page_title'] = "PEDIDO";
 		$data['page_name'] = "pedido";
 		$data['arrPedido'] = $this->model->selectPedido($idpedido,$idpersona);
 		$this->views->getView($this,"orden",$data);

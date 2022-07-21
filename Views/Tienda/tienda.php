@@ -76,6 +76,9 @@ $arrProductos = $data['productos'];
 								</span>
 							</div>
 							<div class="block2-txt-child2 flex-r p-t-3">
+								<?php 
+								# cuando hay stock se muestra el icono para agregar al carro
+								if ($arrProductos[$p]['stock'] > 0) {?>
 								<a href="#"
 								 id="<?= openssl_encrypt($arrProductos[$p]['idproducto'],METHODENCRIPT,KEY); ?>"
 								 class="btn-addwish-b2 dis-block pos-relative js-addwish-b2 js-addcart-detail
@@ -83,6 +86,7 @@ $arrProductos = $data['productos'];
 								 ">
 									<i class="zmdi zmdi-shopping-cart"></i>
 								</a>
+								<?php }?>
 							</div>
 						</div>
 					</div>
