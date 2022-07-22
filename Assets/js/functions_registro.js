@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	if(document.querySelector("#formRegister")){
 		let formRegister = document.querySelector("#formRegister");
-		console.log(formRegister);
 		formRegister.onsubmit = function(e) {
 
 			e.preventDefault();
@@ -13,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			let intTelefono = document.querySelector('#intTelefono').value;
 			let strIdentificacion = document.querySelector('#txtIdentificacion').value;
 			let strPassword = document.querySelector('#txtPassword').value;
-			console.log("log");
 			if(strApellido == '' || strNombre == '' || strEmail == '' || intTelefono == '' || strIdentificacion == '' || strPassword == '' )
 			{
 				swal("Atención", "Todos los campos son obligatorios." , "error");
@@ -29,25 +27,22 @@ document.addEventListener('DOMContentLoaded', function () {
 			} 
 			divLoading.style.display = "flex";
 			let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-			let ajaxUrl = base_url+'Usuarios/registrarUsuario'; 
+			let ajaxUrl = base_url+'/Usuarios/registrarUsuario'; 
 			let formData = new FormData(formRegister);
 			request.open("POST",ajaxUrl,true);
 			request.send(formData);
 			request.onreadystatechange = function(){
-				console.log(request);
 				if(request.readyState == 4 && request.status == 200){
 					let objData = JSON.parse(request.responseText);
-					console.log(objData);
 					if(objData.status)
 					{
-						window.location.reload(false);
-						
+						swal("Usuario creado", objData.msg , "success");
+						// aqui hacer redireccion cuando ok
 					}else{
 						swal("Error", objData.msg , "error");
 					}
 				}
 				divLoading.style.display = "none";
-				window.location.href = "/tienda_virtual/";
 				return false;
 			}		
 		}

@@ -32,7 +32,7 @@
 			$this->intTipoId = $tipoid;
 			$this->intStatus = $status;
 			$return = 0;
-
+			
 			$sql = "SELECT * FROM persona WHERE 
 					email_user = '{$this->strEmail}' or identificacion = '{$this->strIdentificacion}' ";
 			$request = $this->select_all($sql);
@@ -180,6 +180,15 @@
 							$this->strDirFiscal);
 			$request = $this->update($sql,$arrData);
 		    return $request;
+		}
+
+		public function activateUsuarioByEmail(string $correo)
+		{
+			$sql =  "UPDATE persona SET status=?
+			WHERE email_user = $correo";
+			$arrData = array(USUARIO_ACTIVO);
+			$request = $this->update($sql,$arrData);
+			return $request;
 		}
 
 	}

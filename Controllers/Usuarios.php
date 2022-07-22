@@ -5,7 +5,7 @@
 		{
 			parent::__construct();
 			session_start();
-			if(empty($_SESSION['login']))
+			if(empty($_SESSION['login']) && $_SERVER['HTTP_REFERER'] != base_url().'/registro')
 			{
 				header('Location: '.base_url().'/login');
 				die();
@@ -245,26 +245,26 @@
 		}
 
 		public function registrarUsuario(){
-			if($_POST){			
+			if($_POST){		
 				if(empty($_POST['txtIdentificacion']) 
 				|| empty($_POST['txtNombre']) 
 				|| empty($_POST['txtApellido']) 
-				|| empty($_POST['txtTelefono']) 
+				|| empty($_POST['intTelefono']) 
 				|| empty($_POST['txtEmail']) 
-				|| empty($_POST['listRolid']) 
-				|| empty($_POST['listStatus']) )
+				|| empty($_POST['listRolid']))
 				{
 					$arrResponse = array("status" => false, "msg" => 'Datos incorrectos.');
 				}else{ 
+					
 					$idUsuario = intval($_POST['idUsuario']);
 					$strIdentificacion = strClean($_POST['txtIdentificacion']);
 					$strNombre = ucwords(strClean($_POST['txtNombre']));
 					$strApellido = ucwords(strClean($_POST['txtApellido']));
-					$intTelefono = intval(strClean($_POST['txtTelefono']));
+					$intTelefono = intval(strClean($_POST['intTelefono']));
 					$strEmail = strtolower(strClean($_POST['txtEmail']));
 					$intTipoId = intval(strClean($_POST['listRolid']));
-					$intStatus = intval(strClean($_POST['listStatus']));
-					$request_user = "";
+					$intStatus = USUARIO_INACTIVO;
+					$request_user = "";					
 					if($idUsuario == 0)
 					{
 						$strPassword =  empty($_POST['txtPassword']) ? hash("SHA256",passGenerator()) : hash("SHA256",$_POST['txtPassword']);
@@ -276,16 +276,17 @@
 																			$strEmail,
 																			$strPassword, 
 																			$intTipoId, 
-																			$intStatus );
+																			$intStatus);
 					}
-					if($request_user > 0 ) {
-						$arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente.');
+
+					if($request_user > 0 && $request_user != 'exist') {
+						$arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente, favor revisar la bandeja de entrada del correo ingresado.');
 						$nombreUsuario = $strNombre.' '.$strApellido;
 						$dataUsuario = array('nombreUsuario' => $nombreUsuario,
 												'email' => $strEmail,
 												'password' => $strPassword,
 												'asunto' => "Registro de Usuario",
-												'enlaceactivacion' => base_url() + '/activacion?email='+$strEmail+'&activation_code='+$strPassword+'');
+												'enlaceactivacion' => base_url().'/usuarios/activarUsuario?email='.$strEmail);
 						sendEmail($dataUsuario,'email_bienvenida');	
 					} else if($request_user == 'exist'){
 						$arrResponse = array('status' => false, 'msg' => '¡Atención! el email o la identificación ya existe, ingrese otro.');		
@@ -296,5 +297,19 @@
 				echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
 			}
 			die();
+		}
+
+		public function activarUsuario()
+		{
+			if($_GET){
+				if (empty($_GET['email'])) {
+					# redireccionen a una vista de "datos insuficientes" (falta el correo)
+					$arrResponse = array("status" => false, "msg" => 'No es posible almacenar los datos.');
+					header("Location:".base_url());
+				} else {
+					$this->model->activateUsuarioByEmail($_GET['email']);
+					header("Location:".base_url().'/login');
+				}
+			}
 		}
 	}
