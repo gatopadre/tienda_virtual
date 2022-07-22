@@ -5,16 +5,16 @@
 		{
 			parent::__construct();
 			session_start();
-			if(empty($_SESSION['login']) && $_SERVER['HTTP_REFERER'] != base_url().'/registro')
-			{
-				header('Location: '.base_url().'/login');
-				die();
-			}
 			getPermisos(MUSUARIOS);
 		}
 
 		public function Usuarios()
 		{
+			if(empty($_SESSION['login']))
+			{
+				header('Location: '.base_url().'/login');
+				die();
+			}
 			if(empty($_SESSION['permisosMod']['r'])){
 				header("Location:".base_url().'/dashboard');
 			}
@@ -26,6 +26,11 @@
 		}
 
 		public function setUsuario(){
+			if(empty($_SESSION['login']))
+			{
+				header('Location: '.base_url().'/login');
+				die();
+			}
 			if($_POST){			
 				if(empty($_POST['txtIdentificacion']) 
 				|| empty($_POST['txtNombre']) 
@@ -98,6 +103,11 @@
 
 		public function getUsuarios()
 		{
+			if(empty($_SESSION['login']))
+			{
+				header('Location: '.base_url().'/login');
+				die();
+			}
 			if($_SESSION['permisosMod']['r']){
 				$arrData = $this->model->selectUsuarios();
 				for ($i=0; $i < count($arrData); $i++) {
@@ -140,6 +150,11 @@
 		}
 
 		public function getUsuario($idpersona){
+			if(empty($_SESSION['login']))
+			{
+				header('Location: '.base_url().'/login');
+				die();
+			}
 			if($_SESSION['permisosMod']['r']){
 				$idusuario = intval($idpersona);
 				if($idusuario > 0)
@@ -159,6 +174,11 @@
 
 		public function delUsuario()
 		{
+			if(empty($_SESSION['login']))
+			{
+				header('Location: '.base_url().'/login');
+				die();
+			}
 			if($_POST){
 				if($_SESSION['permisosMod']['d']){
 					$intIdpersona = intval($_POST['idUsuario']);
@@ -176,6 +196,11 @@
 		}
 
 		public function perfil(){
+			if(empty($_SESSION['login']))
+			{
+				header('Location: '.base_url().'/login');
+				die();
+			}
 			$data['page_tag'] = "Perfil";
 			$data['page_title'] = "Perfil de usuario";
 			$data['page_name'] = "perfil";
@@ -184,6 +209,11 @@
 		}
 
 		public function putPerfil(){
+			if(empty($_SESSION['login']))
+			{
+				header('Location: '.base_url().'/login');
+				die();
+			}
 			if($_POST){
 				if(empty($_POST['txtIdentificacion']) || empty($_POST['txtNombre']) || empty($_POST['txtApellido']) || empty($_POST['txtTelefono']) )
 				{
@@ -218,6 +248,11 @@
 		}
 
 		public function putDFical(){
+			if(empty($_SESSION['login']))
+			{
+				header('Location: '.base_url().'/login');
+				die();
+			}
 			if($_POST){
 				if(empty($_POST['txtNit']) || empty($_POST['txtNombreFiscal']) || empty($_POST['txtDirFiscal']) )
 				{
@@ -306,7 +341,7 @@
 					# redireccionen a una vista de "datos insuficientes" (falta el correo)
 					$arrResponse = array("status" => false, "msg" => 'No es posible almacenar los datos.');
 					header("Location:".base_url());
-				} else {
+				} else {					
 					$this->model->activateUsuarioByEmail($_GET['email']);
 					header("Location:".base_url().'/login');
 				}

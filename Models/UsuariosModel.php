@@ -185,8 +185,8 @@
 		public function activateUsuarioByEmail(string $correo)
 		{
 			$sql =  "UPDATE persona SET status=?
-			WHERE email_user = $correo";
-			$arrData = array(USUARIO_ACTIVO);
+			WHERE email_user = ?";
+			$arrData = array(USUARIO_ACTIVO, $correo);
 			$request = $this->update($sql,$arrData);
 			return $request;
 		}
