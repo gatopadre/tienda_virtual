@@ -29,13 +29,15 @@ document.addEventListener('DOMContentLoaded', function () {
 			} 
 			divLoading.style.display = "flex";
 			let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-			let ajaxUrl = base_url+'/Registro/registroUser'; 
+			let ajaxUrl = base_url+'Usuarios/registrarUsuario'; 
 			let formData = new FormData(formRegister);
 			request.open("POST",ajaxUrl,true);
 			request.send(formData);
 			request.onreadystatechange = function(){
+				console.log(request);
 				if(request.readyState == 4 && request.status == 200){
 					let objData = JSON.parse(request.responseText);
+					console.log(objData);
 					if(objData.status)
 					{
 						window.location.reload(false);

@@ -305,14 +305,14 @@
 													'pedido' => $infoOrden );
 							sendEmail($dataEmailOrden,"email_notificacion_orden");
 
-							$orden = openssl_encrypt($request_pedido, METHODENCRIPT, KEY);
-							$transaccion = openssl_encrypt($idtransaccionpaypal, METHODENCRIPT, KEY);
-							$arrResponse = array("status" => true, 
-											"orden" => $orden, 
-											"transaccion" =>$transaccion,
-											"msg" => 'Pedido realizado'
-										);
-							$_SESSION['dataorden'] = $arrResponse;
+							// $orden = openssl_encrypt($request_pedido, METHODENCRIPT, KEY);
+							// $transaccion = openssl_encrypt($idtransaccionpaypal, METHODENCRIPT, KEY);
+							// $arrResponse = array("status" => true, 
+							// 				"orden" => $orden, 
+							// 				"transaccion" =>$transaccion,
+							// 				"msg" => 'Pedido realizado'
+							// 			);
+							// $_SESSION['dataorden'] = $arrResponse;
 							unset($_SESSION['arrCarrito']);
 							session_regenerate_id(true);
 						}

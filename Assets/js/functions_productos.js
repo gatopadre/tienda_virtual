@@ -107,11 +107,11 @@ window.addEventListener('load', function() {
                         swal("", objData.msg ,"success");
                         document.querySelector("#idProducto").value = objData.idproducto;
                         document.querySelector("#containerGallery").classList.remove("notblock");
-
+                        
                         if(rowTable == ""){
                             tableProductos.api().ajax.reload();
                         }else{
-                           htmlStatus = intStatus == 1 ? 
+                            htmlStatus = intStatus == 1 ? 
                             '<span class="badge badge-success">Activo</span>' : 
                             '<span class="badge badge-danger">Inactivo</span>';
                             rowTable.cells[1].textContent = intCodigo;
@@ -120,6 +120,7 @@ window.addEventListener('load', function() {
                             rowTable.cells[4].textContent = smony+strPrecio;
                             rowTable.cells[5].innerHTML =  htmlStatus;
                             rowTable = ""; 
+                            tableProductos.api().ajax.reload(); /* se recarga tambien la tabla */
                         }
                     }else{
                         swal("Error", objData.msg , "error");

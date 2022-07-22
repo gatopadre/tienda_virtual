@@ -95,7 +95,9 @@
 					</div>
 					<p>Bienvenido a nuestra tienda en línea.</p>
 					<p>Ahora puedes ralizar tus compras en línea sin salir de casa.</p>
-					<p>Accede a tu cuenta con tus credenciales:</p>
+					<p>Para activar tu cuenta haz clic en el siguiente enlace:</p>
+					<p>Enlace de activacion: <strong><?= $data['enlaceactivacion']; ?></strong></p>
+					<p>Una vez activada, accede a tu cuenta con tus credenciales:</p>
 					<p>Usuario: <strong><?= $data['email']; ?></strong></p>
 					<p>Contraseña: <strong><?= $data['password']; ?></strong></p>
 					<a href="<?= BASE_URL; ?>" target="_blank" class="x_button_link x_link_blue">Comprar ahora</a>

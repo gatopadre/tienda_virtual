@@ -53,7 +53,8 @@
             <label class="control-label left-label">CONTRASEÑA</label>
             <input id="txtPassword" name="txtPassword" class="form-control" type="password" placeholder="Contraseña">
           </div>
-
+          <input type="hidden" name="listRolid" value="3">
+          <input type="hidden" name="listStatus" value="0">
           <div id="alertRegister" class="text-center"></div>
           <div class="form-group btn-container">
             <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-sign-in-alt"></i> REGISTRARSE</button>

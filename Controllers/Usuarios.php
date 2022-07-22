@@ -27,7 +27,13 @@
 
 		public function setUsuario(){
 			if($_POST){			
-				if(empty($_POST['txtIdentificacion']) || empty($_POST['txtNombre']) || empty($_POST['txtApellido']) || empty($_POST['txtTelefono']) || empty($_POST['txtEmail']) || empty($_POST['listRolid']) || empty($_POST['listStatus']) )
+				if(empty($_POST['txtIdentificacion']) 
+				|| empty($_POST['txtNombre']) 
+				|| empty($_POST['txtApellido']) 
+				|| empty($_POST['txtTelefono']) 
+				|| empty($_POST['txtEmail']) 
+				|| empty($_POST['listRolid']) 
+				|| empty($_POST['listStatus']) )
 				{
 					$arrResponse = array("status" => false, "msg" => 'Datos incorrectos.');
 				}else{ 
@@ -238,5 +244,57 @@
 			die();
 		}
 
+		public function registrarUsuario(){
+			if($_POST){			
+				if(empty($_POST['txtIdentificacion']) 
+				|| empty($_POST['txtNombre']) 
+				|| empty($_POST['txtApellido']) 
+				|| empty($_POST['txtTelefono']) 
+				|| empty($_POST['txtEmail']) 
+				|| empty($_POST['listRolid']) 
+				|| empty($_POST['listStatus']) )
+				{
+					$arrResponse = array("status" => false, "msg" => 'Datos incorrectos.');
+				}else{ 
+					$idUsuario = intval($_POST['idUsuario']);
+					$strIdentificacion = strClean($_POST['txtIdentificacion']);
+					$strNombre = ucwords(strClean($_POST['txtNombre']));
+					$strApellido = ucwords(strClean($_POST['txtApellido']));
+					$intTelefono = intval(strClean($_POST['txtTelefono']));
+					$strEmail = strtolower(strClean($_POST['txtEmail']));
+					$intTipoId = intval(strClean($_POST['listRolid']));
+					$intStatus = intval(strClean($_POST['listStatus']));
+					$request_user = "";
+					if($idUsuario == 0)
+					{
+						$strPassword =  empty($_POST['txtPassword']) ? hash("SHA256",passGenerator()) : hash("SHA256",$_POST['txtPassword']);
+
+						$request_user = $this->model->insertUsuario($strIdentificacion,
+																			$strNombre, 
+																			$strApellido, 
+																			$intTelefono, 
+																			$strEmail,
+																			$strPassword, 
+																			$intTipoId, 
+																			$intStatus );
+					}
+					if($request_user > 0 ) {
+						$arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente.');
+						$nombreUsuario = $strNombre.' '.$strApellido;
+						$dataUsuario = array('nombreUsuario' => $nombreUsuario,
+												'email' => $strEmail,
+												'password' => $strPassword,
+												'asunto' => "Registro de Usuario",
+												'enlaceactivacion' => base_url() + '/activacion?email='+$strEmail+'&activation_code='+$strPassword+'');
+						sendEmail($dataUsuario,'email_bienvenida');	
+					} else if($request_user == 'exist'){
+						$arrResponse = array('status' => false, 'msg' => '¡Atención! el email o la identificación ya existe, ingrese otro.');		
+					} else{
+						$arrResponse = array("status" => false, "msg" => 'No es posible almacenar los datos.');
+					}
+				}
+				echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+			}
+			die();
+		}
 	}
- ?>
