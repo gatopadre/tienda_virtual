@@ -119,11 +119,26 @@ $('.btn-num-product-down').on('click', function(){
 $('.btn-num-product-up').on('click', function(){
     let numProduct = Number($(this).prev().val());
     let idpr = this.getAttribute('idpr');
-    $(this).prev().val(numProduct + 1);
-    let cant = $(this).prev().val();
-	if(idpr != null){
-    	fntUpdateCant(idpr,cant);
-    }
+	let cantidad_disponible = $('#cantidad-disponible').text();
+
+	if (numProduct >= cantidad_disponible || cantidad_disponible <= 0) {
+		// alert('La cantidad solicitada supera a la cantidad disponible del producto.');
+		swal({
+			title: "Cantidad no disponible",
+			text: 'La cantidad solicitada supera a la cantidad disponible del producto.',
+			icon: "error",
+			type: "error",
+			closeOnConfirm: false,
+		}); 
+	} else {
+		$(this).prev().val(numProduct + 1);
+		let cant = $(this).prev().val();
+		if(idpr != null){
+			fntUpdateCant(idpr,cant);
+		}
+	}
+
+    
 });
 
 //Actualizar producto
@@ -193,7 +208,7 @@ if(document.querySelector(".methodpago")){
         		document.querySelector("#divpaypal").classList.remove("notblock");
         		document.querySelector("#divtipopago").classList.add("notblock");
         	}else{
-        		document.querySelector("#divpaypal").classList.add("notblock");
+        		// document.querySelector("#divpaypal").classList.add("notblock");
         		document.querySelector("#divtipopago").classList.remove("notblock");
         	}
         });

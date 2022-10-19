@@ -12,7 +12,7 @@ $tituloTerminos = !empty(getInfoPage(PTERMINOS)) ? getInfoPage(PTERMINOS)['titul
 $infoTerminos = !empty(getInfoPage(PTERMINOS)) ? getInfoPage(PTERMINOS)['contenido'] : "";
 
 ?>
-<script
+<!-- <script
     src="https://www.paypal.com/sdk/js?client-id=<?= IDCLIENTE ?>&currency=<?= CURRENCY ?>">
 </script>
 <script>
@@ -58,8 +58,8 @@ $infoTerminos = !empty(getInfoPage(PTERMINOS)) ? getInfoPage(PTERMINOS)['conteni
 		    }
       });
     }
-  }).render('#paypal-btn-container');
-</script>
+  }).render('#paypal-btn-container'); 
+</script> -->
 
 <!-- Modal -->
 <div class="modal fade" id="modalTerminos" tabindex="-1" aria-hidden="true">
@@ -112,7 +112,7 @@ $infoTerminos = !empty(getInfoPage(PTERMINOS)) ? getInfoPage(PTERMINOS)['conteni
 								<input id="txtDireccion" class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="state" placeholder="Dirección de envío">
 							</div>
 							<div class="bor8 bg0 m-b-22">
-								<input id="txtCiudad" class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="postcode" placeholder="Ciudad / Estado">
+								<input id="txtCiudad" class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="postcode" placeholder="Comuna">
 							</div>
 						</div>
 					<?php }else{ ?>
@@ -234,12 +234,12 @@ $infoTerminos = !empty(getInfoPage(PTERMINOS)) ? getInfoPage(PTERMINOS)['conteni
 								Método de pago
 							</h4>
 							<div class="divmetodpago">
-								<div>
+								<!-- <div>
 									<label for="paypal">
 										<input type="radio" id="paypal" class="methodpago" name="payment-method" checked="" value="Paypal">
 										<img src="<?= media()?>/images/img-paypal.jpg" alt="Icono de PayPal" class="ml-space-sm" width="74" height="20">
 									</label>
-								</div>
+								</div> -->
 								<div>
 									<label for="contraentrega">
 										<input type="radio" id="contraentrega" class="methodpago" name="payment-method" value="CT">
@@ -266,13 +266,13 @@ $infoTerminos = !empty(getInfoPage(PTERMINOS)) ? getInfoPage(PTERMINOS)['conteni
 									<br>
 									<button type="submit" id="btnComprar" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">Procesar pedido</button>
 								</div>
-								<div id="divpaypal">
+								<!-- <div id="divpaypal">
 									<div>
 										<p>Para completar la transacción, te enviaremos a los servidores seguros de PayPal.</p>
 									</div>
 									<br>
 									<div id="paypal-btn-container"></div>
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</div>			

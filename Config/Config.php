@@ -1,9 +1,9 @@
 <?php 
-	const BASE_URL = "http://tiendavirtual.local";
+	const BASE_URL = "http://localhost/tienda_virtual";
 	//const BASE_URL = "https://abelosh.com/tiendavirtual";
 
 	//Zona horaria
-	date_default_timezone_set('America/Guatemala');
+	date_default_timezone_set('America/Santiago');
 
 	//Datos de conexión a Base de Datos
 	const DB_HOST = "localhost";
@@ -60,7 +60,7 @@
 	const METHODENCRIPT = "AES-128-ECB";
 
 	//Envío
-	const COSTOENVIO = 5;
+	const COSTOENVIO = 0; #antes era 5
 
 	//Módulos
 	const MDASHBOARD = 1;
@@ -102,4 +102,6 @@
 	const INSTAGRAM = "https://www.instagram.com/febel24/";
 	
 
+	// CANTIDAD STOCK MINIMO
+	const STOCK_MINIMO = 97;
  ?>

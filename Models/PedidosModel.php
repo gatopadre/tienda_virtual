@@ -148,5 +148,58 @@
 			$request_insert = $this->update($query_insert,$arrData);
         	return $request_insert;
 		}
+
+		public function selectDetallePedido(int $idpedido)
+		{
+			$query_select_detalle_pedido = "SELECT dp.id,
+			dp.pedidoid,
+			dp.productoid,
+			dp.precio,
+			dp.cantidad
+			FROM detalle_pedido dp WHERE pedidoid = $idpedido";
+			$requestDetallePedido = $this->select_all($query_select_detalle_pedido);
+			return $requestDetallePedido;
+		}
+
+		public function updateStockProductos(int $idpedido)
+		{
+			$requestDetallePedido = $this->selectDetallePedido($idpedido);
+			$stock_suficiente = true;
+			foreach ($requestDetallePedido as $detalle) {
+				$query_select_producto = "SELECT p.idproducto,
+													p.codigo,
+													p.nombre,
+													p.descripcion,
+													p.precio,
+													p.stock,
+													p.categoriaid,
+													c.nombre as categoria,
+													p.status
+											FROM producto p
+											INNER JOIN categoria c
+											ON p.categoriaid = c.idcategoria
+											WHERE idproducto = ".$detalle['productoid'];
+				$requestProducto = $this->select($query_select_producto);
+				# si la cantidad de productos del pedido es mayor de la que hay en stock, no se puede guardar el pedido y
+				# hacer el descuento de existencias
+				if ($detalle['productoid'] > $requestProducto['stock'] ) {
+					$stock_suficiente = false; 
+				}
+			}
+
+			# si el stock es suficiente hara las actualizaciones al stock de cada producto
+			if (!$stock_suficiente) {
+				return false;
+			} else {
+				foreach ($requestDetallePedido as $detalle) {
+					$query_update_producto = "UPDATE producto p
+											SET p.stock = p.stock - ?
+											WHERE p.idproducto = ?";
+					$arrData = array($detalle['cantidad'], $detalle['productoid']);
+					$requestProducto = $this->update($query_update_producto, $arrData);
+				}
+			}
+			return true;			
+		}
 	}
  ?>

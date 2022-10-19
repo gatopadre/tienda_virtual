@@ -111,7 +111,7 @@
 
 					<div class="right-top-bar flex-w h-full">
 						<a href="#" class="flex-c-m trans-04 p-lr-25" data-toggle="modal" data-target="#modalAyuda" >
-							Help & FAQs
+							Ayuda & FAQs
 						</a>
 						<?php 
 							if(isset($_SESSION['login'])){
@@ -158,7 +158,7 @@
 							</li>
 							
 							<li>
-								<a href="<?= base_url(); ?>/nosotros">Nosotro</a>
+								<a href="<?= base_url(); ?>/nosotros">Nosotros</a>
 							</li>
 
 							<li>
@@ -228,7 +228,7 @@
 				<li>
 					<div class="right-top-bar flex-w h-full">
 						<a href="#" class="flex-c-m p-lr-10 trans-04" data-toggle="modal" data-target="#modalAyuda">
-							Help & FAQs
+							Ayuda & FAQs
 						</a>
 						<?php 
 							if(isset($_SESSION['login'])){

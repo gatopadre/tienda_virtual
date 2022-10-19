@@ -1,6 +1,10 @@
 # Tienda Virutal
+## Instalacion Local:
+- copíar el codigo a la carpeta htdocs
+- importar la base de datos
+- cambiar la url en archivo de configuraciones del proyecto
 
-## Instalacion:
+## [No funciona] Instalacion Local:
 - hay que modificar el archivo httpd: (/opt/lampp/apache2/conf/httpd.conf)
     <VirtualHost 127.0.0.1:80>
         DocumentRoot "/home/seba/SourceCode/Php/tienda_virtual/"
@@ -25,5 +29,9 @@
 - importar la base de datos
 
 - cambiar la url en archivo de configuraciones del proyecto
+
+## mejoras
+- procesar pago, en la parte de poner la direccion de envio, que el campo comuna sea un selector con las comunas del pais
+- nombre del documento pdf cambiar factura por orden de compra
 
 

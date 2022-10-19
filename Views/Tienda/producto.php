@@ -65,9 +65,15 @@ $urlShared = base_url()."/tienda/producto/".$arrProducto['idproducto']."/".$arrP
 						<span class="mtext-106 cl2">
 							<?= SMONEY.formatMoney($arrProducto['precio']); ?>
 						</span>
+						<?php if($arrProducto['stock'] > 0) {?>
+							<h6><?= "(<span id='cantidad-disponible'>".$arrProducto['stock']."</span> Disponibles)"; ?></h6>	
+						<?php } else { ?>
+							<h6>(No disponible.)</h6>
+						<?php } ?>					
 						<!-- <p class="stext-102 cl3 p-t-23"></p> -->
 						<?= $arrProducto['descripcion']; ?>
 						<!--  -->
+						<?php if($arrProducto['stock'] > 0) {?>
 						<div class="p-t-33">
 							<div class="flex-w flex-r-m p-b-10">
 								<div class="size-204 flex-w flex-m respon6-next">
@@ -81,14 +87,14 @@ $urlShared = base_url()."/tienda/producto/".$arrProducto['idproducto']."/".$arrP
 										<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 											<i class="fs-16 zmdi zmdi-plus"></i>
 										</div>
-									</div>
-
-									<button id="<?= openssl_encrypt($arrProducto['idproducto'],METHODENCRIPT,KEY); ?>" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-										Agregar al carrito
-									</button>
+									</div>									
+										<button id="<?= openssl_encrypt($arrProducto['idproducto'],METHODENCRIPT,KEY); ?>" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+											Agregar al carrito
+										</button>
 								</div>
 							</div>	
 						</div>
+						<?php } ?>
 						<!--  -->
 						<div class="flex-w flex-m p-l-100 p-t-40 respon7">
 							<div class="flex-m bor9 p-r-10 m-r-11">
