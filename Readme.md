@@ -33,5 +33,3 @@
 ## mejoras
 - procesar pago, en la parte de poner la direccion de envio, que el campo comuna sea un selector con las comunas del pais
 - nombre del documento pdf cambiar factura por orden de compra
-
-
