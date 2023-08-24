@@ -30,6 +30,12 @@
 
 - cambiar la url en archivo de configuraciones del proyecto
 
+## Instalacion en hosting
+- copiar el codigo a la carpeta public_html
+- importar la base de datos
+- cambiar la url en archivo de configuraciones del proyecto, ubicado en la carpeta config.
+
+
 ## mejoras
 - procesar pago, en la parte de poner la direccion de envio, que el campo comuna sea un selector con las comunas del pais
 - nombre del documento pdf cambiar factura por orden de compra

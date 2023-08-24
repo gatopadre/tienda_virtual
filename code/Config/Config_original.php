@@ -7,9 +7,9 @@
 
 	//Datos de conexión a Base de Datos
 	const DB_HOST = "localhost";
-	const DB_NAME = "chiloete_tienda_virtual";
-	const DB_USER = "chiloete_tienda_virtual";
-	const DB_PASSWORD = "Sebastian.2023";
+	const DB_NAME = "db_tiendavirtual";
+	const DB_USER = "root";
+	const DB_PASSWORD = "";
 	const DB_CHARSET = "utf8";
 
 	//Para envío de correo
